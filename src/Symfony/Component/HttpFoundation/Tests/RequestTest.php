@@ -1533,6 +1533,16 @@ class RequestTest extends TestCase
         $this->assertEquals(['application/vnd.wap.wmlscriptc', 'text/vnd.wap.wml', 'application/vnd.wap.xhtml+xml', 'application/xhtml+xml', 'text/html', 'multipart/mixed', '*/*'], $request->getAcceptableContentTypes());
     }
 
+    public function testGetPreferredContentType()
+    {
+        $request = new Request();
+        $this->assertEquals(null, $request->getPreferredContentType());
+
+        $request = new Request();
+        $request->headers->set('Accept', 'text/html, application/json, multipart/mixed, */*');
+        $this->assertEquals('text/html', $request->getPreferredContentType());
+    }
+
     public function testGetLanguages()
     {
         $request = new Request();

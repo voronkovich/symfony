@@ -1680,6 +1680,16 @@ class Request
     }
 
     /**
+     * Gets a content type preferred by the client browser
+     *
+     * @return string|null The preferred content type
+     */
+    public function getPreferredContentType()
+    {
+        return $this->getAcceptableContentTypes()[0] ?? null;
+    }
+
+    /**
      * Returns true if the request is a XMLHttpRequest.
      *
      * It works if your JavaScript library sets an X-Requested-With HTTP header.
